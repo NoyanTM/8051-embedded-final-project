@@ -1,0 +1,3 @@
+".\Objects\FinalSource.obj" 
+TO ".\Objects\FinalSource" 
+PRINT(".\Listings\FinalSource.m51") RAMSIZE(256) 

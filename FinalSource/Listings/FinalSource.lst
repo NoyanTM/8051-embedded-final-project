@@ -1,0 +1,112 @@
+C51 COMPILER V9.60.7.0   FINALSOURCE                                                       11/10/2023 13:55:45 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE FINALSOURCE
+OBJECT MODULE PLACED IN .\Objects\FinalSource.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE FinalSource.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listin
+                    -gs\FinalSource.lst) TABS(2) OBJECT(.\Objects\FinalSource.obj)
+
+line level    source
+
+   1          #include <reg51.h>  
+   2          #define ELEVATOR_REQUEST P3  
+   3          #define FLOOR_SELECTION P1  
+   4          #define LEDS P0  
+   5          #define DISPLAY P2 
+   6           
+   7          // array of digits of seven segment display (from '1' to '8') according to assignment 7 
+   8          unsigned char digitsDISPLAY[] = {0x9F, 0x25, 0x0D, 0x99, 0x49, 0x41, 0x1F, 0x01};
+   9          
+  10          // delay function according to example 7-7 
+  11          // AT89S52 / DS89C420 with XTAL = 11.0592 MHz 
+  12          //void delay(unsigned int time){
+  13          //  unsigned int x, y;
+  14          //  for(x = 0; x < time; x++)
+  15          //    for(y = 0; y < 1275; y++); 
+  16          //}
+  17          
+  18          // function get just a floor number from 1 to 8, 
+  19          // then shifts 1 to left by (floor - 1) positions,
+  20          // so sets one led corresponding to selected floor to 1 
+  21          void showLEDS(unsigned char number){
+  22   1        LEDS = (1 << (number - 1));
+  23   1      }
+  24          
+  25          // function get just a floor number from 1 to 8, 
+  26          // then uses number as index of array and substract 1, because array index starts from 0, 
+  27          // so defines DISPLAY (P2) value from pre-defined digit patterns of digitsDISPLAY[] array 
+  28          void showDISPLAY(unsigned char number){
+  29   1        DISPLAY = digitsDISPLAY[number - 1];
+  30   1      }
+  31          
+  32          void main(void){
+  33   1        unsigned char current_floor = 1;
+  34   1        unsigned char requested_floor = 0;
+  35   1        unsigned char selected_floor = 0;
+  36   1        unsigned char i = 0; // iteration steps
+  37   1        
+  38   1        LEDS = 0x00; // output port 0 - 8 red leds
+  39   1        DISPLAY = 0x00; // output port 2 - seven segment display
+  40   1        ELEVATOR_REQUEST = 0xFF; // input port 3 - 8 elevator request switches
+  41   1        FLOOR_SELECTION = 0xFF; // input port 1 - 8 floor selection switches
+  42   1        
+  43   1        while(1){
+  44   2          // check if all of switches are not activated,
+  45   2          // just display initial data of current floor to leds and seven segment display
+  46   2          if(ELEVATOR_REQUEST == 0xFF && FLOOR_SELECTION == 0xFF){
+  47   3            showDISPLAY(current_floor); // update display
+  48   3            showLEDS(current_floor); // update leds
+  49   3          }
+  50   2          
+  51   2          // check for elevator request switches activation
+  52   2          if(ELEVATOR_REQUEST != 0xFF){
+  53   3            // iterate through each bit in ELEVATOR_REQUEST
+  54   3            for(i = 0; i < 8; i++){
+C51 COMPILER V9.60.7.0   FINALSOURCE                                                       11/10/2023 13:55:45 PAGE 2   
+
+  55   4              // check if bit isn't set, so one of the ELEVATOR_REQUEST switch is activated
+  56   4              if(!(ELEVATOR_REQUEST & (1 << i))){
+  57   5                requested_floor = i + 1; // set requested floor according to activated switch
+  58   5                break; // exit loop when request is found
+  59   5              }
+  60   4            }
+  61   3            current_floor = requested_floor; // update current floor
+  62   3            showDISPLAY(current_floor); // update display
+  63   3            showLEDS(current_floor); // update leds
+  64   3          }
+  65   2          
+  66   2          // check for floor selection switches activation
+  67   2          if(FLOOR_SELECTION != 0xFF){
+  68   3            // iterate through each bit in FLOOR_SELECTION
+  69   3            for(i = 0; i < 8; i++){
+  70   4              // check if bit isn't set, so one of the FLOOR_SELECTION switch is activated
+  71   4              if(!(FLOOR_SELECTION & (1 << i))){
+  72   5                selected_floor = i + 1; // set selected floor according to activated switch
+  73   5                break; // exit loop when selection is found
+  74   5              }
+  75   4            }
+  76   3            
+  77   3            // move step by step from current floor to selected floor
+  78   3            while(current_floor != selected_floor){
+  79   4              // ternary operator with incrementing and decrementing current floor in relation to selected floor
+  80   4              (current_floor < selected_floor) ? current_floor++ : current_floor--;
+  81   4              showDISPLAY(current_floor); // update display
+  82   4              showLEDS(current_floor); // update leds
+  83   4            }
+  84   3          }
+  85   2        }
+  86   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    173    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       1
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

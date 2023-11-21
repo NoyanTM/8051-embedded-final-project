@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ASCII"?>
+<MCUProject Schema="67" Class="CMCUProject" Path="" PathAbs="" ProjectType="1">
+<ProjectFolders/>
+<ProjectFiles/>
+<BuildSettings>
+<MCUProjectBuildSettings Class="CMCUProjectBuildSettings" ToolGroupType="-1" IntermediatePath="&amp;ASC.\" IntermediatePathAbs="&amp;ASCC:\Users\Home\Desktop\AITU\Introduction to Embedded Systems 1\Week 8\Final Project\FinalSource\FinalMultisim\FinalMultisim\FinalMultisim\" OutputPath="&amp;ASC.\" OutputPathAbs="&amp;ASCC:\Users\Home\Desktop\AITU\Introduction to Embedded Systems 1\Week 8\Final Project\FinalSource\FinalMultisim\FinalMultisim\FinalMultisim\" TargetFileType="6" SimPath="&amp;ASC..\..\..\Objects\" SimPathAbs="&amp;ASCC:\Users\Home\Desktop\AITU\Introduction to Embedded Systems 1\Week 8\Final Project\FinalSource\Objects\" SimFile="&amp;ASCFinalSource.hex" CodeLoadType="0"/>
+</BuildSettings>
+</MCUProject>

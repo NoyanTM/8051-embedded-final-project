@@ -1,0 +1,142 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    11/10/2023  13:55:45  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\FinalSource.obj TO .\Objects\FinalSource PRINT (.\Listings\FinalSource.m51) RAMSIZ
+>> E (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\FinalSource.obj (FINALSOURCE)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Objects\FinalSource (FINALSOURCE)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0008H     UNIT         ?DT?FINALSOURCE
+            DATA    0010H     0001H     UNIT         _DATA_GROUP_
+            IDATA   0011H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0095H     UNIT         ?PR?MAIN?FINALSOURCE
+            CODE    0895H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0921H     0010H     UNIT         ?PR?_SHOWLEDS?FINALSOURCE
+            CODE    0931H     000BH     UNIT         ?C_INITSEG
+            CODE    093CH     0008H     UNIT         ?PR?_SHOWDISPLAY?FINALSOURCE
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\FinalSource (FINALSOURCE)
+
+
+SEGMENT                                DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH
+----------------------------------------------------
+?C_C51STARTUP                        -----    -----
+  +--> ?PR?MAIN?FINALSOURCE
+  +--> ?C_INITSEG
+
+?PR?MAIN?FINALSOURCE                 0010H    0001H
+  +--> ?PR?_SHOWDISPLAY?FINALSOURCE
+  +--> ?PR?_SHOWLEDS?FINALSOURCE
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\FinalSource (FINALSOURCE)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/10/2023  13:55:45  PAGE 2
+
+
+  -------         MODULE        FINALSOURCE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0008H         PUBLIC        digitsDISPLAY
+  C:0800H         PUBLIC        main
+  C:093CH         PUBLIC        _showDISPLAY
+  C:0921H         PUBLIC        _showLEDS
+  -------         PROC          _SHOWLEDS
+  D:0007H         SYMBOL        number
+  C:0921H         LINE#         21
+  C:0921H         LINE#         22
+  C:0930H         LINE#         23
+  -------         ENDPROC       _SHOWLEDS
+  -------         PROC          _SHOWDISPLAY
+  D:0007H         SYMBOL        number
+  C:093CH         LINE#         28
+  C:093CH         LINE#         29
+  C:0943H         LINE#         30
+  -------         ENDPROC       _SHOWDISPLAY
+  -------         PROC          MAIN
+  -------         DO            
+  D:0004H         SYMBOL        current_floor
+  D:0010H         SYMBOL        requested_floor
+  D:0001H         SYMBOL        selected_floor
+  D:0005H         SYMBOL        i
+  -------         ENDDO         
+  C:0800H         LINE#         32
+  C:0800H         LINE#         33
+  C:0802H         LINE#         34
+  C:0805H         LINE#         35
+  C:0806H         LINE#         36
+  C:0807H         LINE#         38
+  C:0809H         LINE#         39
+  C:080BH         LINE#         40
+  C:080EH         LINE#         41
+  C:0811H         LINE#         43
+  C:0811H         LINE#         46
+  C:081BH         LINE#         47
+  C:0820H         LINE#         48
+  C:0823H         LINE#         49
+  C:0823H         LINE#         52
+  C:0828H         LINE#         54
+  C:082AH         LINE#         56
+  C:0841H         LINE#         57
+  C:0845H         LINE#         58
+  C:0847H         LINE#         59
+  C:0847H         LINE#         60
+  C:084BH         LINE#         61
+  C:084DH         LINE#         62
+  C:0852H         LINE#         63
+  C:0857H         LINE#         64
+  C:0857H         LINE#         67
+  C:085CH         LINE#         69
+  C:085EH         LINE#         71
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/10/2023  13:55:45  PAGE 3
+
+
+  C:0875H         LINE#         72
+  C:0878H         LINE#         73
+  C:087AH         LINE#         74
+  C:087AH         LINE#         75
+  C:087EH         LINE#         78
+  C:0882H         LINE#         80
+  C:088BH         LINE#         81
+  C:0890H         LINE#         82
+  C:0893H         LINE#         83
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        FINALSOURCE
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 00B7H BYTE ( 8%) *
+******************************************************************************
+
+Program Size: data=18.0 xdata=0 code=327
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
